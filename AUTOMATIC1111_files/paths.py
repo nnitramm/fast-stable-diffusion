@@ -19,11 +19,12 @@ sys.path.insert(0, script_path)
 sd_path = None
 possible_sd_paths = [os.path.join(script_path, '/content/stable-diffusion-webui'),os.path.join(script_path, '/kaggle/working/stable-diffusion-webui'), '.', os.path.dirname(script_path)]
 for possible_sd_path in possible_sd_paths:
+    print("Checking SD path in: {possible_sd_path}")
     if os.path.exists(os.path.join(possible_sd_path, 'ldm/models/diffusion/ddpm.py')):
         sd_path = os.path.abspath(possible_sd_path)
         break
 
-assert sd_path is not None, "Couldn't find Stable Diffusion in any of: " + str(possible_sd_paths)
+assert sd_path is not None, "Couldn't find Stable Diffusion in any of: " + str(possible_sd_paths) + " | " + str(sd_path)
 
 path_dirs = [
     (sd_path, 'ldm', 'Stable Diffusion', []),
